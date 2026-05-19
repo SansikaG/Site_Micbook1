@@ -1,0 +1,1367 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MIKBOOK — Médecine · Mikaël Guedj</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Source+Sans+3:wght@300;400;600;700&family=IM+Fell+English:ital@0;1&display=swap" rel="stylesheet">
+<style>
+:root {
+  --rouge: #C8001A;
+  --noir: #0e0e0e;
+  --creme: #F2EBD9;
+  --brun: #5C3A1E;
+  --bordeaux: #6B1A1A;
+  --ocre: #C4862A;
+  --rose: #D4A0A0;
+  --gris: #2a2a2a;
+  --gris-clair: #888;
+  --blanc: #F9F5EC;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  background: var(--noir);
+  color: var(--creme);
+  font-family: 'Source Sans 3', sans-serif;
+  overflow-x: hidden;
+}
+
+/* SCROLLING TICKER */
+.ticker-wrap {
+  background: var(--rouge);
+  overflow: hidden;
+  padding: 10px 0;
+  position: relative;
+  z-index: 100;
+}
+.ticker {
+  display: flex;
+  white-space: nowrap;
+  animation: ticker 25s linear infinite;
+}
+.ticker span {
+  font-family: 'Bebas Neue', cursive;
+  font-size: 1.1rem;
+  letter-spacing: 4px;
+  color: #fff;
+  padding: 0 3rem;
+}
+@keyframes ticker {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+/* NAV */
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.2rem 3rem;
+  background: var(--noir);
+  border-bottom: 1px solid #222;
+  position: sticky;
+  top: 0;
+  z-index: 99;
+}
+.nav-logo {
+  font-family: 'Bebas Neue', cursive;
+  font-size: 2.2rem;
+  color: var(--rouge);
+  letter-spacing: 6px;
+  cursor: pointer;
+}
+.nav-logo span { color: var(--creme); }
+.nav-links { display: flex; gap: 2rem; }
+.nav-links a {
+  font-family: 'Source Sans 3', sans-serif;
+  font-weight: 600;
+  font-size: 0.8rem;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--gris-clair);
+  text-decoration: none;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+.nav-links a:hover { color: var(--rouge); }
+
+/* HERO */
+.hero {
+  position: relative;
+  min-height: 92vh;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  background: var(--noir);
+}
+.hero-bg {
+  position: absolute; inset: 0;
+  background: 
+    radial-gradient(ellipse at 70% 50%, rgba(100,26,26,0.25) 0%, transparent 60%),
+    repeating-linear-gradient(0deg, transparent, transparent 60px, rgba(255,255,255,0.01) 60px, rgba(255,255,255,0.01) 61px),
+    repeating-linear-gradient(90deg, transparent, transparent 60px, rgba(255,255,255,0.01) 60px, rgba(255,255,255,0.01) 61px);
+}
+.hero-content {
+  position: relative;
+  z-index: 2;
+  padding: 0 4rem;
+  max-width: 700px;
+}
+.hero-eyebrow {
+  font-family: 'Source Sans 3', sans-serif;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 6px;
+  text-transform: uppercase;
+  color: var(--rouge);
+  margin-bottom: 1.5rem;
+}
+.hero-title {
+  font-family: 'Bebas Neue', cursive;
+  font-size: clamp(6rem, 13vw, 11rem);
+  line-height: 0.9;
+  letter-spacing: 2px;
+  color: var(--creme);
+  margin-bottom: 0.5rem;
+}
+.hero-title .red { color: var(--rouge); }
+.hero-medecine {
+  font-family: 'Bebas Neue', cursive;
+  font-size: clamp(1.2rem, 2.5vw, 1.8rem);
+  letter-spacing: 18px;
+  color: var(--gris-clair);
+  display: block;
+  margin-bottom: 2rem;
+  writing-mode: horizontal-tb;
+}
+.hero-sub {
+  font-family: 'IM Fell English', serif;
+  font-style: italic;
+  font-size: 1.1rem;
+  color: var(--rose);
+  margin-bottom: 2.5rem;
+  line-height: 1.6;
+}
+.hero-author {
+  font-size: 0.8rem;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--gris-clair);
+}
+.hero-edition {
+  display: inline-block;
+  margin-top: 1.5rem;
+  font-size: 0.75rem;
+  letter-spacing: 3px;
+  color: var(--ocre);
+  border: 1px solid var(--ocre);
+  padding: 4px 14px;
+}
+.hero-deco {
+  position: absolute;
+  right: 5%;
+  top: 50%;
+  transform: translateY(-50%);
+  font-family: 'Bebas Neue', cursive;
+  font-size: 18vw;
+  color: rgba(200,0,26,0.04);
+  letter-spacing: -10px;
+  user-select: none;
+  z-index: 1;
+}
+
+/* SEPARATEUR */
+.sep {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  padding: 4rem 4rem 2rem;
+}
+.sep-line { flex: 1; height: 1px; background: #333; }
+.sep-txt {
+  font-family: 'Bebas Neue', cursive;
+  font-size: 1.4rem;
+  letter-spacing: 8px;
+  color: var(--gris-clair);
+}
+
+/* CHAPITRES GRID */
+#page-home { display: block; }
+.chapters-intro {
+  padding: 0 4rem 2rem;
+  font-family: 'IM Fell English', serif;
+  font-style: italic;
+  color: var(--gris-clair);
+  font-size: 1.05rem;
+}
+.chapters-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 1px;
+  background: #1a1a1a;
+  margin: 0 0 4rem;
+}
+.chapter-card {
+  background: var(--noir);
+  padding: 2rem 1.8rem;
+  cursor: pointer;
+  transition: all 0.25s;
+  position: relative;
+  overflow: hidden;
+  border-left: 3px solid transparent;
+}
+.chapter-card::before {
+  content: attr(data-num);
+  position: absolute;
+  right: -10px;
+  bottom: -20px;
+  font-family: 'Bebas Neue', cursive;
+  font-size: 5rem;
+  color: rgba(200,0,26,0.06);
+  line-height: 1;
+}
+.chapter-card:hover {
+  background: #151515;
+  border-left-color: var(--rouge);
+}
+.chapter-card:hover .ch-num { color: var(--rouge); }
+.ch-num {
+  font-family: 'Bebas Neue', cursive;
+  font-size: 0.85rem;
+  letter-spacing: 4px;
+  color: #444;
+  transition: color 0.25s;
+}
+.ch-name {
+  font-family: 'Bebas Neue', cursive;
+  font-size: 1.4rem;
+  letter-spacing: 2px;
+  color: var(--creme);
+  margin: 0.4rem 0 0.6rem;
+  line-height: 1.2;
+}
+.ch-tag {
+  font-size: 0.7rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--gris-clair);
+}
+.ch-deco {
+  font-size: 1.2rem;
+  margin-top: 0.8rem;
+  opacity: 0.4;
+}
+
+/* SECRET GAME LINK */
+.secret-game {
+  position: fixed;
+  bottom: 20px;
+  right: 24px;
+  cursor: pointer;
+  opacity: 0.15;
+  transition: opacity 0.3s, transform 0.3s;
+  z-index: 9999;
+  font-size: 1.4rem;
+  color: var(--rouge);
+  user-select: none;
+  background: none;
+  border: none;
+}
+.secret-game:hover { opacity: 1; transform: scale(1.3) rotate(15deg); }
+
+/* PAGE CHAPITRE */
+#page-chapter { display: none; }
+.ch-header {
+  padding: 4rem 4rem 2rem;
+  border-bottom: 1px solid #1e1e1e;
+}
+.ch-back {
+  font-size: 0.75rem;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--gris-clair);
+  cursor: pointer;
+  margin-bottom: 1.5rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: none;
+  border: none;
+  transition: color 0.2s;
+}
+.ch-back:hover { color: var(--rouge); }
+.ch-header h1 {
+  font-family: 'Bebas Neue', cursive;
+  font-size: clamp(2.5rem, 6vw, 5rem);
+  letter-spacing: 4px;
+  color: var(--creme);
+  line-height: 1;
+}
+.ch-header h1 span { color: var(--rouge); }
+
+/* TABS */
+.tabs {
+  display: flex;
+  gap: 0;
+  border-bottom: 1px solid #1e1e1e;
+  padding: 0 4rem;
+  margin-top: 2rem;
+}
+.tab-btn {
+  font-family: 'Bebas Neue', cursive;
+  font-size: 1.1rem;
+  letter-spacing: 4px;
+  padding: 1rem 2rem;
+  background: none;
+  border: none;
+  color: #444;
+  cursor: pointer;
+  border-bottom: 3px solid transparent;
+  margin-bottom: -1px;
+  transition: all 0.2s;
+}
+.tab-btn.active { color: var(--rouge); border-bottom-color: var(--rouge); }
+.tab-btn:hover:not(.active) { color: var(--creme); }
+.tab-content { padding: 3rem 4rem; display: none; }
+.tab-content.active { display: block; }
+
+/* FLASHCARDS */
+.flashcard-area { max-width: 600px; margin: 0 auto; }
+.fc-progress {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.8rem;
+  letter-spacing: 2px;
+  color: var(--gris-clair);
+  margin-bottom: 2rem;
+  text-transform: uppercase;
+}
+.fc-bar {
+  width: 100%;
+  height: 3px;
+  background: #222;
+  margin-bottom: 2rem;
+}
+.fc-bar-inner {
+  height: 100%;
+  background: var(--rouge);
+  transition: width 0.4s;
+}
+.flashcard {
+  width: 100%;
+  min-height: 280px;
+  perspective: 1000px;
+  margin-bottom: 2rem;
+  cursor: pointer;
+}
+.flashcard-inner {
+  position: relative;
+  width: 100%;
+  min-height: 280px;
+  transform-style: preserve-3d;
+  transition: transform 0.5s cubic-bezier(0.4,0,0.2,1);
+}
+.flashcard.flipped .flashcard-inner { transform: rotateY(180deg); }
+.fc-face {
+  position: absolute;
+  inset: 0;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  border: 1px solid #2a2a2a;
+  padding: 2.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  min-height: 280px;
+}
+.fc-front { background: #111; border-left: 4px solid var(--rouge); }
+.fc-back { background: #0d1a0d; border-left: 4px solid #2a6a2a; transform: rotateY(180deg); }
+.fc-label {
+  font-size: 0.65rem;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--gris-clair);
+  margin-bottom: 1.5rem;
+}
+.fc-text {
+  font-family: 'IM Fell English', serif;
+  font-size: 1.25rem;
+  line-height: 1.6;
+  color: var(--creme);
+}
+.fc-back .fc-text { color: #8fc88f; }
+.fc-hint {
+  font-size: 0.7rem;
+  letter-spacing: 2px;
+  color: #333;
+  margin-top: 1.5rem;
+  text-transform: uppercase;
+}
+.fc-actions {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+}
+.fc-btn {
+  font-family: 'Bebas Neue', cursive;
+  letter-spacing: 3px;
+  font-size: 1rem;
+  padding: 0.8rem 2.5rem;
+  cursor: pointer;
+  border: 1px solid;
+  background: none;
+  transition: all 0.2s;
+}
+.fc-btn-good { color: #4caf50; border-color: #4caf50; }
+.fc-btn-good:hover { background: #4caf50; color: #000; }
+.fc-btn-bad { color: var(--rouge); border-color: var(--rouge); }
+.fc-btn-bad:hover { background: var(--rouge); color: #fff; }
+
+/* QCM */
+.qcm-area { max-width: 700px; margin: 0 auto; }
+.qcm-q-num {
+  font-family: 'Bebas Neue', cursive;
+  font-size: 0.9rem;
+  letter-spacing: 4px;
+  color: var(--gris-clair);
+  margin-bottom: 1rem;
+  text-transform: uppercase;
+}
+.qcm-question {
+  font-family: 'IM Fell English', serif;
+  font-size: 1.3rem;
+  line-height: 1.7;
+  color: var(--creme);
+  margin-bottom: 2rem;
+  padding-left: 1rem;
+  border-left: 3px solid var(--rouge);
+}
+.qcm-options { display: flex; flex-direction: column; gap: 0.8rem; margin-bottom: 2rem; }
+.qcm-opt {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  padding: 1rem 1.5rem;
+  border: 1px solid #222;
+  cursor: pointer;
+  transition: all 0.2s;
+  background: #0e0e0e;
+}
+.qcm-opt:hover:not(.disabled) { border-color: var(--rouge); background: #150000; }
+.qcm-opt.correct { border-color: #4caf50; background: #081208; }
+.qcm-opt.wrong { border-color: var(--rouge); background: #150000; }
+.qcm-opt.disabled { cursor: default; }
+.opt-letter {
+  font-family: 'Bebas Neue', cursive;
+  font-size: 1.1rem;
+  letter-spacing: 2px;
+  color: var(--gris-clair);
+  min-width: 24px;
+}
+.opt-text {
+  font-size: 0.95rem;
+  line-height: 1.5;
+  color: var(--creme);
+}
+.qcm-feedback {
+  padding: 1rem 1.5rem;
+  font-family: 'IM Fell English', serif;
+  font-style: italic;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  display: none;
+  margin-bottom: 1.5rem;
+}
+.qcm-feedback.good { border-left: 3px solid #4caf50; color: #8fc88f; display: block; }
+.qcm-feedback.bad { border-left: 3px solid var(--rouge); color: var(--rose); display: block; }
+.qcm-next {
+  font-family: 'Bebas Neue', cursive;
+  font-size: 1rem;
+  letter-spacing: 4px;
+  padding: 0.9rem 2.5rem;
+  background: var(--rouge);
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s;
+  display: none;
+}
+.qcm-next:hover { background: var(--bordeaux); }
+.qcm-next.show { display: block; }
+
+/* SCORE */
+.score-panel {
+  text-align: center;
+  padding: 3rem;
+  border: 1px solid #222;
+  max-width: 500px;
+  margin: 0 auto;
+}
+.score-big {
+  font-family: 'Bebas Neue', cursive;
+  font-size: 6rem;
+  line-height: 1;
+  color: var(--rouge);
+}
+.score-label {
+  font-size: 0.8rem;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--gris-clair);
+  margin: 1rem 0;
+}
+.score-msg {
+  font-family: 'IM Fell English', serif;
+  font-style: italic;
+  font-size: 1.2rem;
+  color: var(--creme);
+  margin: 1.5rem 0 2rem;
+}
+.score-stamp {
+  display: inline-block;
+  font-family: 'Bebas Neue', cursive;
+  font-size: 1.4rem;
+  letter-spacing: 6px;
+  padding: 0.5rem 1.5rem;
+  border: 3px solid;
+  transform: rotate(-3deg);
+}
+.stamp-good { border-color: #4caf50; color: #4caf50; }
+.stamp-bad { border-color: var(--rouge); color: var(--rouge); }
+
+/* GAME PAGE */
+#page-game { display: none; }
+.game-header {
+  padding: 2rem 4rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid #1a1a1a;
+}
+.game-title {
+  font-family: 'Bebas Neue', cursive;
+  font-size: 2rem;
+  letter-spacing: 8px;
+  color: var(--creme);
+}
+.game-title span { color: var(--rouge); }
+.game-score-display {
+  font-family: 'Bebas Neue', cursive;
+  font-size: 1.4rem;
+  letter-spacing: 4px;
+  color: var(--ocre);
+}
+.game-area {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem;
+  gap: 1.5rem;
+}
+#snakeCanvas {
+  border: 1px solid #333;
+  background: #000;
+  image-rendering: pixelated;
+}
+.game-controls {
+  display: flex;
+  gap: 1rem;
+}
+.game-btn {
+  font-family: 'Bebas Neue', cursive;
+  font-size: 0.95rem;
+  letter-spacing: 4px;
+  padding: 0.7rem 2rem;
+  background: none;
+  border: 1px solid #333;
+  color: var(--creme);
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.game-btn:hover { border-color: var(--rouge); color: var(--rouge); }
+.game-hint {
+  font-size: 0.75rem;
+  letter-spacing: 2px;
+  color: #333;
+  text-transform: uppercase;
+}
+
+/* GAME OVERLAY */
+.game-overlay {
+  display: none;
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.85);
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 1.5rem;
+  text-align: center;
+}
+.game-overlay.show { display: flex; }
+.game-overlay-title {
+  font-family: 'Bebas Neue', cursive;
+  font-size: 3rem;
+  letter-spacing: 6px;
+  color: var(--rouge);
+}
+.game-overlay-sub {
+  font-family: 'IM Fell English', serif;
+  font-style: italic;
+  color: var(--creme);
+  font-size: 1.1rem;
+}
+.snake-wrap {
+  position: relative;
+  display: inline-block;
+}
+
+/* POPUP JEU */
+.game-popup {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 9000;
+  background: rgba(0,0,0,0.9);
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 1.5rem;
+  text-align: center;
+  animation: popIn 0.4s ease;
+}
+.game-popup.show { display: flex; }
+@keyframes popIn {
+  from { opacity: 0; transform: scale(0.8); }
+  to { opacity: 1; transform: scale(1); }
+}
+.popup-icon { font-size: 4rem; animation: wiggle 0.5s ease 0.3s; }
+@keyframes wiggle {
+  0%,100% { transform: rotate(0); }
+  25% { transform: rotate(-10deg); }
+  75% { transform: rotate(10deg); }
+}
+.popup-title {
+  font-family: 'Bebas Neue', cursive;
+  font-size: 2.5rem;
+  letter-spacing: 6px;
+  color: var(--rouge);
+}
+.popup-sub {
+  font-family: 'IM Fell English', serif;
+  font-style: italic;
+  font-size: 1.2rem;
+  color: var(--creme);
+}
+.popup-btns { display: flex; gap: 1rem; margin-top: 1rem; }
+.popup-btn-play {
+  font-family: 'Bebas Neue', cursive;
+  font-size: 1rem;
+  letter-spacing: 4px;
+  padding: 0.8rem 2.5rem;
+  background: var(--rouge);
+  color: #fff;
+  border: none;
+  cursor: pointer;
+}
+.popup-btn-skip {
+  font-family: 'Bebas Neue', cursive;
+  font-size: 1rem;
+  letter-spacing: 4px;
+  padding: 0.8rem 2.5rem;
+  background: none;
+  color: var(--gris-clair);
+  border: 1px solid #333;
+  cursor: pointer;
+}
+
+/* FOOTER */
+footer {
+  border-top: 1px solid #1a1a1a;
+  padding: 2.5rem 4rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.footer-logo {
+  font-family: 'Bebas Neue', cursive;
+  font-size: 1.3rem;
+  letter-spacing: 6px;
+  color: #2a2a2a;
+}
+.footer-txt {
+  font-size: 0.75rem;
+  letter-spacing: 2px;
+  color: #2a2a2a;
+  text-transform: uppercase;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  nav { padding: 1rem 1.5rem; }
+  .hero-content { padding: 0 1.5rem; }
+  .hero-title { font-size: 5rem; }
+  .sep, .chapters-intro { padding-left: 1.5rem; padding-right: 1.5rem; }
+  .chapters-grid { grid-template-columns: 1fr 1fr; }
+  .ch-header, .tabs, .tab-content { padding-left: 1.5rem; padding-right: 1.5rem; }
+  #snakeCanvas { width: 320px !important; height: 320px !important; }
+}
+</style>
+</head>
+<body>
+
+<!-- TICKER -->
+<div class="ticker-wrap">
+  <div class="ticker" id="ticker"></div>
+</div>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo" onclick="showHome()">MIK<span>BOOK</span></div>
+  <div class="nav-links">
+    <a onclick="showHome()">Chapitres</a>
+    <a onclick="showGame()">🎮 Jeu</a>
+  </div>
+</nav>
+
+<!-- HOME PAGE -->
+<div id="page-home">
+  <section class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-deco">M</div>
+    <div class="hero-content">
+      <div class="hero-eyebrow">✚ Manuel de médecine ✚</div>
+      <h1 class="hero-title"><span class="red">MIK</span>BOOK</h1>
+      <span class="hero-medecine">M É D E C I N E</span>
+      <p class="hero-sub">Révise chapitre par chapitre. Flashcards, QCM, et un jeu pour souffler.<br>Le compagnon incontournable du carabin.</p>
+      <div class="hero-author">Mikaël Guedj</div>
+      <div class="hero-edition">3ᵉ édition</div>
+    </div>
+  </section>
+
+  <div class="sep">
+    <div class="sep-line"></div>
+    <div class="sep-txt">Les chapitres</div>
+    <div class="sep-line"></div>
+  </div>
+
+  <p class="chapters-intro">Clique sur un chapitre pour accéder aux flashcards et aux QCM.</p>
+
+  <div class="chapters-grid" id="chaptersGrid"></div>
+
+  <footer>
+    <div class="footer-logo">MIKBOOK</div>
+    <div class="footer-txt">Mikaël Guedj — 3ᵉ édition</div>
+  </footer>
+</div>
+
+<!-- CHAPTER PAGE -->
+<div id="page-chapter">
+  <div class="ch-header">
+    <button class="ch-back" onclick="showHome()">← Retour aux chapitres</button>
+    <h1 id="chapterTitle"></h1>
+  </div>
+  <div class="tabs">
+    <button class="tab-btn active" onclick="switchTab('flashcards')">Flashcards</button>
+    <button class="tab-btn" onclick="switchTab('qcm')">QCM</button>
+    <button class="tab-btn" onclick="switchTab('score')">Score</button>
+  </div>
+  <div class="tab-content active" id="tab-flashcards">
+    <div class="flashcard-area">
+      <div class="fc-progress">
+        <span id="fcCounter">1 / 10</span>
+        <span id="fcKnow">✓ 0 sus</span>
+      </div>
+      <div class="fc-bar"><div class="fc-bar-inner" id="fcBar" style="width:0%"></div></div>
+      <div class="flashcard" id="flashcard" onclick="flipCard()">
+        <div class="flashcard-inner">
+          <div class="fc-face fc-front">
+            <div class="fc-label">Question</div>
+            <div class="fc-text" id="fcQuestion"></div>
+            <div class="fc-hint">Cliquer pour retourner</div>
+          </div>
+          <div class="fc-face fc-back">
+            <div class="fc-label">Réponse</div>
+            <div class="fc-text" id="fcAnswer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="fc-actions" id="fcActions" style="display:none">
+        <button class="fc-btn fc-btn-good" onclick="fcNext(true)">✓ Je savais</button>
+        <button class="fc-btn fc-btn-bad" onclick="fcNext(false)">✗ À revoir</button>
+      </div>
+    </div>
+  </div>
+  <div class="tab-content" id="tab-qcm">
+    <div class="qcm-area">
+      <div class="qcm-q-num" id="qcmNum">Question 1 / 10</div>
+      <div class="qcm-question" id="qcmQuestion"></div>
+      <div class="qcm-options" id="qcmOptions"></div>
+      <div class="qcm-feedback" id="qcmFeedback"></div>
+      <button class="qcm-next" id="qcmNext" onclick="qcmNextQ()">Question suivante →</button>
+    </div>
+  </div>
+  <div class="tab-content" id="tab-score">
+    <div class="score-panel">
+      <div class="score-big" id="scoreBig">—</div>
+      <div class="score-label">score QCM</div>
+      <div class="score-msg" id="scoreMsg">Complète le QCM pour voir ton score.</div>
+      <div id="scoreStamp"></div>
+    </div>
+  </div>
+</div>
+
+<!-- GAME PAGE -->
+<div id="page-game">
+  <div class="game-header">
+    <div>
+      <button class="ch-back" onclick="showHome()">← Retour</button>
+      <div class="game-title">SNAKE <span>✚</span></div>
+    </div>
+    <div>
+      <div class="game-score-display" id="snakeScore">Score: 0</div>
+      <div class="game-score-display" style="font-size:0.9rem;color:#555" id="snakeBest">Meilleur: 0</div>
+    </div>
+  </div>
+  <div class="game-area">
+    <div class="snake-wrap">
+      <canvas id="snakeCanvas" width="480" height="480"></canvas>
+      <div class="game-overlay" id="gameOverlay">
+        <div class="game-overlay-title" id="overlayTitle">SNAKE ✚</div>
+        <div class="game-overlay-sub" id="overlaySub">Mange les pilules, évite les murs</div>
+        <button class="game-btn" onclick="startSnake()">Démarrer</button>
+      </div>
+    </div>
+    <div class="game-hint">↑ ↓ ← → ou ZQSD pour diriger · Espace pour pause</div>
+    <div class="game-controls">
+      <button class="game-btn" onclick="startSnake()">Recommencer</button>
+      <button class="game-btn" onclick="showHome()">Retour aux révisions</button>
+    </div>
+  </div>
+</div>
+
+<!-- GAME POPUP -->
+<div class="game-popup" id="gamePopup">
+  <div class="popup-icon">🎮</div>
+  <div class="popup-title">Pause bien méritée !</div>
+  <div class="popup-sub">Tu as travaillé dur. Détends-toi avec une partie de Snake.</div>
+  <div class="popup-btns">
+    <button class="popup-btn-play" onclick="closePopupAndPlay()">Jouer !</button>
+    <button class="popup-btn-skip" onclick="closePopup()">Continuer à réviser</button>
+  </div>
+</div>
+
+<!-- SECRET LINK -->
+<button class="secret-game" onclick="showGame()" title="✚">✚</button>
+
+<script>
+// ═══════════════════════════════════
+// DATA
+// ═══════════════════════════════════
+const CHAPTERS = [
+  { num:1,  name:"Sémiologie",                tag:"Bases", deco:"🩺" },
+  { num:2,  name:"Imagerie",                  tag:"Radiologie · Écho · IRM", deco:"🔬" },
+  { num:3,  name:"Neurologie",                tag:"SNC · SNP", deco:"🧠" },
+  { num:4,  name:"Psychiatrie",               tag:"Santé mentale", deco:"💊" },
+  { num:5,  name:"Cardiologie",               tag:"Cœur · Vaisseaux", deco:"❤️" },
+  { num:6,  name:"Pneumologie",               tag:"Poumons · Respiration", deco:"🫁" },
+  { num:7,  name:"Hépato-Gastro-Entérologie", tag:"Foie · Tube digestif", deco:"🔬" },
+  { num:8,  name:"Urologie",                  tag:"Reins · Voies urinaires", deco:"💧" },
+  { num:9,  name:"Ophtalmologie",             tag:"Œil · Vision", deco:"👁️" },
+  { num:10, name:"Gynécologie / Obstétrique", tag:"Femme · Grossesse", deco:"🌸" },
+  { num:11, name:"Orthopédie",                tag:"Os · Articulations", deco:"🦴" },
+  { num:12, name:"ORL / Stomatologie",        tag:"Oreille · Nez · Gorge", deco:"👂" },
+  { num:13, name:"Endocrinologie · Diabéto",  tag:"Hormones · Métabolisme", deco:"⚗️" },
+  { num:14, name:"Hématologie",               tag:"Sang · Coagulation", deco:"🩸" },
+  { num:15, name:"Oncologie",                 tag:"Cancers · Tumeurs", deco:"🔬" },
+  { num:16, name:"Dermatologie",              tag:"Peau · Phanères", deco:"🌿" },
+  { num:17, name:"Maladies Infectieuses",     tag:"Bactéries · Virus · Parasites", deco:"🦠" },
+  { num:18, name:"Rhumatologie",              tag:"Articulations · Auto-immunité", deco:"🦾" },
+  { num:19, name:"Gériatrie · Soins Palliatifs", tag:"Vieillissement · Fin de vie", deco:"🕊️" },
+  { num:20, name:"Réanimation · Toxiques",    tag:"Urgences · Intoxications", deco:"⚡" },
+  { num:21, name:"Santé Publique",            tag:"Médecine légale · Travail", deco:"⚖️" },
+  { num:22, name:"Thérapeutique",             tag:"Pharmacologie · Traitements", deco:"💉" },
+  { num:23, name:"Nutrition · Métabolisme",   tag:"Alimentation · Carences", deco:"🥗" },
+  { num:24, name:"Épilogue",                  tag:"Synthèse finale", deco:"📖" },
+];
+
+const QCM_DATA = {
+  3: { // Neurologie
+    flashcards: [
+      {q:"Qu'est-ce que le signe de Babinski ?", a:"Extension du gros orteil à la stimulation plantaire. Signe une lésion du faisceau pyramidal (neurone moteur central)."},
+      {q:"Quelle artère est impliquée dans le syndrome de Wallenberg ?", a:"L'artère cérébelleuse postéro-inférieure (PICA), branche de l'artère vertébrale."},
+      {q:"Quels sont les critères diagnostiques de la migraine avec aura ?", a:"Aura réversible (visuelle, sensitive, motrice) précédant ou accompagnant la céphalée, durée 5-60 min."},
+      {q:"Définir la conscience de Glasgow 15/15", a:"Yeux 4 (spontanés) + Verbal 5 (orienté) + Moteur 6 (obéit aux ordres) = 15/15. Conscience normale."},
+      {q:"Quelle est la distinction entre épilepsie focale et généralisée ?", a:"Focale : début dans un réseau d'un hémisphère. Généralisée : implique les deux hémisphères dès le début."},
+      {q:"Mécanisme de la sclérose en plaques ?", a:"Maladie auto-immune démyélinisante du SNC. Inflammation et destruction de la myéline par les lymphocytes T."},
+      {q:"Quels sont les signes du syndrome cérébelleux ?", a:"NADA : Nystagmus, Ataxie, Dysmétrie/Dysdiadococinésie, Adiadococinésie. + Dysarthrie cérébelleuse."},
+      {q:"Définir un AVC ischémique vs hémorragique", a:"Ischémique : occlusion artérielle → 80% des AVC. Hémorragique : rupture vasculaire → 20%. Traitement radicalement différent."},
+      {q:"Quand suspecter une méningite bactérienne ?", a:"Triade de Kernig : fièvre + céphalées + raideur de nuque. Urgence diagnostique → ponction lombaire immédiate."},
+      {q:"Qu'est-ce que la maladie de Parkinson ?", a:"Dégénérescence des neurones dopaminergiques de la substance noire. Triade : tremblement de repos, rigidité, akinésie (bradykinésie)."},
+    ],
+    qcm: [
+      {q:"Le signe de Babinski est :",options:["A. La flexion du gros orteil à la stimulation plantaire","B. L'extension du gros orteil à la stimulation plantaire","C. La douleur à la pression du talon","D. Le réflexe rotulien exagéré"],ans:1,exp:"L'extension du gros orteil (+ écartement des autres orteils) est le signe de Babinski positif, pathologique chez l'adulte, indiquant une atteinte pyramidale."},
+      {q:"Dans la maladie de Parkinson, quelle structure est principalement atteinte ?",options:["A. Le cortex moteur primaire","B. Le cervelet","C. La substance noire (locus niger)","D. L'hippocampe"],ans:2,exp:"La substance noire (locus niger) perd ses neurones dopaminergiques, entraînant le déficit en dopamine dans le striatum à l'origine de la triade parkinsonienne."},
+      {q:"La sclérose en plaques est caractérisée par :",options:["A. Une dégénérescence des motoneurones alpha","B. Des plaques de démyélinisation du SNC","C. Une atteinte des nerfs périphériques uniquement","D. Un déficit en sérotonine"],ans:1,exp:"La SEP est une maladie auto-immune démyélinisante du SNC (cerveau + moelle). L'inflammation détruit la gaine de myéline, perturbant la conduction nerveuse."},
+      {q:"Le score de Glasgow minimal est :",options:["A. 0","B. 1","C. 3","D. 5"],ans:2,exp:"Le Glasgow minimal est 3 (E1 + V1 + M1), correspondant à une absence totale de réponse. Un score ≤ 8 définit le coma."},
+      {q:"Le syndrome cérébelleux comprend :",options:["A. Tremblement de repos, rigidité, bradykinésie","B. Ataxie, dysmétrie, nystagmus, hypotonie","C. Hémiparésie, aphasie, déviation de la tête","D. Ptosis, diplopie, trouble de déglutition"],ans:1,exp:"NADA : Nystagmus, Ataxie cérébelleuse (démarche ébrieuse), Dysmétrie/Dysdiadococinésie, + Adiadococinésie et hypotonie."},
+      {q:"Une méningite bactérielle nécessite :",options:["A. Une IRM en urgence avant tout traitement","B. Une ponction lombaire avant antibiothérapie dans tous les cas","C. Antibiothérapie + corticoïdes en urgence, PL si possible","D. Attendre les résultats culturaux avant traitement"],ans:2,exp:"En cas de suspicion de méningite bactérienne : antibiothérapie + dexaméthasone EN URGENCE. La PL est réalisée si elle ne retarde pas le traitement."},
+      {q:"L'artère impliquée dans le syndrome de Wallenberg est :",options:["A. Artère cérébrale moyenne","B. Artère cérébrale postérieure","C. Artère cérébelleuse postéro-inférieure (PICA)","D. Artère carotide interne"],ans:2,exp:"Le syndrome de Wallenberg = infarctus latérobulbaire par occlusion de la PICA (artère cérébelleuse postéro-inférieure), branche de l'artère vertébrale."},
+      {q:"Une épilepsie focale se distingue par :",options:["A. Un début simultané dans les deux hémisphères","B. Un début dans un réseau d'un seul hémisphère","C. L'absence systématique de perte de conscience","D. L'absence de traitement possible"],ans:1,exp:"L'épilepsie focale naît dans un réseau focal d'un hémisphère. Elle peut secondairement se généraliser. Opposée à l'épilepsie généralisée (bilatérale d'emblée)."},
+      {q:"Quel signe est typique d'une atteinte pyramidale ?",options:["A. Hypotonie musculaire","B. Signe de Babinski positif","C. Fasciculations","D. Aréflexie ostéotendineuse"],ans:1,exp:"L'atteinte du motoneurone central (voie pyramidale) donne : Babinski +, hyperréflexie, spasticité, signe de Hoffman. L'atteinte du motoneurone périphérique donne hypo/aréflexie, fasciculations."},
+      {q:"La triade de Parkinson comprend :",options:["A. Tremblement d'action + ataxie + nystagmus","B. Tremblement de repos + rigidité + akinésie/bradykinésie","C. Tremblement d'intention + hypotonie + dysmétrie","D. Tremblement postural + spasticité + hyperréflexie"],ans:1,exp:"Parkinson = 3A : Akinésie/bradykinésie (signe cardinal), rigidité en roue dentée, tremblement de repos (4-6 Hz, disparaît au mouvement volontaire)."},
+    ]
+  },
+  5: { // Cardiologie
+    flashcards: [
+      {q:"Qu'est-ce que l'insuffisance cardiaque gauche ?", a:"Incapacité du ventricule gauche à assurer un débit suffisant. Clinique : dyspnée, orthopnée, OAP, crépitants pulmonaires."},
+      {q:"Quels sont les critères ECG de l'IDM en STEMI ?", a:"Sus-décalage du segment ST ≥ 1mm dans ≥ 2 dérivations contiguës. → Reperfusion en urgence (< 90 min)."},
+      {q:"Définir la fibrillation atriale (FA)", a:"Activité électrique atriale chaotique (350-600/min), réponse ventriculaire irrégulière. Risque majeur : embolie systémique (AVC)."},
+      {q:"Quand anticoaguler dans la FA ?", a:"Score CHA₂DS₂-VASc ≥ 2 chez l'homme, ≥ 3 chez la femme → anticoagulation orale (AOD en 1ère intention)."},
+      {q:"Quelle est la triade de la péricardite aiguë ?", a:"Douleur thoracique (calmée penché en avant), frottement péricardique, sus-décalage ST diffus en selle de cheval à l'ECG."},
+      {q:"Qu'est-ce que le syndrome coronarien aigu ?", a:"Rupture de plaque athéromateuse → thrombose coronaire. Trois formes : angor instable, NSTEMI, STEMI."},
+      {q:"Mécanisme de l'HTA essentielle ?", a:"Origine multifactorielle (génétique + environnement). Augmentation des résistances vasculaires périphériques. 95% des HTA."},
+      {q:"Qu'est-ce que le bloc auriculo-ventriculaire du 3ème degré ?", a:"Dissociation complète entre activité atriale et ventriculaire. Urgence → pace-maker temporaire puis définitif."},
+      {q:"Quels sont les signes d'insuffisance cardiaque droite ?", a:"Turgescence jugulaire, reflux hépato-jugulaire, hépatomégalie, œdèmes des membres inférieurs."},
+      {q:"Indications des bêta-bloquants en cardiologie ?", a:"IDM, insuffisance cardiaque (bisoprolol, carvédilol), FA (contrôle fréquence), HTA, angor."},
+    ],
+    qcm: [
+      {q:"Le STEMI est défini par :",options:["A. Sus-décalage ST ≥ 1 mm dans ≥ 2 dérivations contiguës","B. Sous-décalage ST ≥ 0,5 mm","C. Onde T négative isolée","D. Bloc de branche gauche uniquement"],ans:0,exp:"Le STEMI (ST-Elevation Myocardial Infarction) nécessite un sus-décalage ST ≥ 1 mm (≥ 2 mm en V1-V4) dans ≥ 2 dérivations contiguës → reperfusion < 90 min."},
+      {q:"La fibrillation atriale entraîne un risque majeur de :",options:["A. Bradycardie sinusale","B. Embolie systémique et AVC","C. Hypotension orthostatique","D. Bloc sino-atrial"],ans:1,exp:"La FA provoque une stase sanguine dans l'oreillette gauche → formation de thrombus (surtout dans l'auricule gauche) → embolie systémique et AVC."},
+      {q:"L'insuffisance cardiaque gauche se manifeste principalement par :",options:["A. Œdèmes des membres inférieurs","B. Turgescence jugulaire","C. Dyspnée, orthopnée, OAP","D. Hépatomégalie douloureuse"],ans:2,exp:"L'IVG entraîne une congestion pulmonaire en amont : dyspnée d'effort puis de repos, orthopnée (dyspnée couchée), OAP, crépitants bilatéraux."},
+      {q:"Le score CHA₂DS₂-VASc sert à :",options:["A. Évaluer la sévérité de l'insuffisance cardiaque","B. Stratifier le risque d'AVC dans la FA","C. Guider l'indication d'une coronarographie","D. Estimer le risque hémorragique"],ans:1,exp:"CHA₂DS₂-VASc évalue le risque thromboembolique dans la FA : Congestive HF, HTA, Age ≥ 75, Diabète, AVC antérieur, Maladie vasculaire, Age 65-74, Sexe féminin."},
+      {q:"La péricardite aiguë présente à l'ECG :",options:["A. Sus-décalage ST localisé en miroir","B. Sus-décalage ST diffus en selle de cheval","C. Onde Q pathologique","D. Bloc de branche droit"],ans:1,exp:"La péricardite donne un sus-décalage ST diffus (toutes les dérivations sauf aVR et V1), concave vers le haut (en selle de cheval), sans onde Q, ni image en miroir."},
+      {q:"Le bloc auriculo-ventriculaire du 3ème degré est caractérisé par :",options:["A. Un allongement de l'espace PR","B. Des complexes QRS parfois absents","C. Une dissociation complète atrio-ventriculaire","D. Un espace PR normal"],ans:2,exp:"Le BAV 3 = dissociation complète : les oreillettes et les ventricules battent de façon indépendante. Risque de syncope, mort subite. → Pace-maker en urgence."},
+      {q:"L'HTA essentielle représente quelle proportion des hypertensions ?",options:["A. 50%","B. 75%","C. 95%","D. 100%"],ans:2,exp:"95% des HTA sont essentielles (primitives, cause inconnue). 5% sont secondaires (HTA rénovasculaire, hyperaldostéronisme primaire, phéochromocytome...)."},
+      {q:"Les bêta-bloquants sont indiqués dans (plusieurs vraies, choisir la PLUS correcte) :",options:["A. L'insuffisance cardiaque aiguë décompensée","B. L'insuffisance cardiaque stable chronique","C. L'asthme sévère","D. Le phéochromocytome isolé"],ans:1,exp:"Les BB (bisoprolol, carvédilol, métoprolol) sont indiqués dans l'IC stable chronique à FEVG réduite. Contre-indiqués dans l'IC décompensée aiguë et l'asthme sévère."},
+      {q:"L'insuffisance cardiaque droite se manifeste par :",options:["A. OAP et dyspnée paroxystique nocturne","B. Turgescence jugulaire, œdèmes MI, hépatomégalie","C. Hypotension et choc cardiogénique","D. Dyspnée d'effort isolée"],ans:1,exp:"L'IVD entraîne une congestion veineuse systémique en amont : TJ, reflux hépato-jugulaire (RHJ), hépatomégalie congestive, ascite, œdèmes MI bilatéraux."},
+      {q:"Quel mécanisme explique le SCA (syndrome coronarien aigu) ?",options:["A. Spasme coronarien chronique","B. Rupture d'une plaque d'athérome avec thrombose","C. Embolie pulmonaire massive","D. Dissection aortique aiguë"],ans:1,exp:"Le SCA est causé par la rupture ou érosion d'une plaque d'athérome vulnérable → exposition du contenu lipidique → activation plaquettaire → thrombose coronaire."},
+    ]
+  },
+  17: { // Maladies Infectieuses
+    flashcards: [
+      {q:"Critères de SIRS (Systemic Inflammatory Response Syndrome) ?", a:"≥ 2 critères parmi : T° > 38°C ou < 36°C, FC > 90/min, FR > 20/min ou PaCO2 < 32 mmHg, GB > 12000 ou < 4000/mm³."},
+      {q:"Définition du sepsis selon Sepsis-3 ?", a:"Dysfonction d'organe menaçant le pronostic vital causée par une réponse de l'hôte dérégulée à une infection. Score SOFA ≥ 2."},
+      {q:"Quels sont les modes de transmission du VIH ?", a:"Sexuel (rapport non protégé), sanguin (transfusion, partage de seringues), materno-fœtal (grossesse, accouchement, allaitement)."},
+      {q:"Définir la fenêtre sérologique du VIH ?", a:"Période entre contamination et positivité des tests sérologiques : 3 semaines pour les tests de 4ème génération (Ag p24 + Ac)."},
+      {q:"Quel est le traitement prophylactique post-exposition (TPE) au VIH ?", a:"Trithérapie antirétrovirale pendant 28 jours, à débuter dans les 48h (idéalement < 4h) après exposition."},
+      {q:"Signes de pneumonie à pneumocoque ?", a:"Fièvre brutale, point de côté, expectoration rouillée, syndrome de condensation. Radio : opacité lobaire. Traitement : amoxicilline."},
+      {q:"Mécanisme de résistance aux bêtalactamines ?", a:"Production de bêtalactamases (hydrolyse du cycle bêtalactame), modifications des PLP (SARM), imperméabilité membranaire, efflux."},
+      {q:"Qu'est-ce que le paludisme à P. falciparum ?", a:"Infection par Plasmodium falciparum, transmis par moustique Anopheles. Formes graves : neuropaludisme, OAP, anémie sévère. Traitement : artéméther-luméfantrine."},
+      {q:"Quand dépister la tuberculose latente ?", a:"Contact avec TB active, immunodépression (VIH, anti-TNF, corticothérapie prolongée), populations à risque. Test IGRA ou IDR."},
+      {q:"Traitement de la méningite bactérienne à méningocoque ?", a:"Céfotaxime 200 mg/kg/j IV + Dexaméthasone 0,15 mg/kg/6h pendant 4 jours. Déclaration obligatoire + prophylaxie entourage."},
+    ],
+    qcm: [
+      {q:"Le sepsis selon Sepsis-3 est défini par :",options:["A. Fièvre + tachycardie + hyperleucocytose","B. SIRS avec infection documentée","C. Dysfonction d'organe (SOFA ≥ 2) due à une infection","D. Infection bactériémique avec hémocultures positives"],ans:2,exp:"Sepsis-3 (2016) : dysfonction d'organe menaçant le pronostic vital causée par une réponse dérégulée de l'hôte à l'infection. Score SOFA ≥ 2 points (ou qSOFA en urgence)."},
+      {q:"Le TPE (traitement post-exposition) au VIH doit être débuté :",options:["A. Dans les 72 heures, idéalement < 4 heures","B. Dans les 7 jours suivant l'exposition","C. Seulement si la source est connue séropositive","D. Après le résultat de la sérologie VIH de la source"],ans:0,exp:"Le TPE doit être débuté le plus tôt possible, idéalement < 4h et impérativement < 48-72h. Il est efficace à > 80% si débuté précocement. Durée : 28 jours."},
+      {q:"La fenêtre sérologique du VIH avec les tests de 4ème génération est de :",options:["A. 3 mois","B. 6 semaines","C. 3 semaines","D. 1 semaine"],ans:2,exp:"Les tests combinés Ag/Ac de 4ème génération détectent l'Ag p24 dès 2-3 semaines. La fenêtre résiduelle est d'environ 3 semaines (vs 6 semaines pour les tests de 3ème génération)."},
+      {q:"Le traitement de la méningite à méningocoque comprend en 1ère ligne :",options:["A. Amoxicilline + métronidazole","B. Céfotaxime + dexaméthasone","C. Vancomycine seule","D. Ciprofloxacine orale"],ans:1,exp:"Méningite à méningocoque = céfotaxime 200 mg/kg/j IV (ou ceftriaxone) + dexaméthasone 0,15 mg/kg/6h × 4 jours (réduction séquelles auditives). Déclaration obligatoire."},
+      {q:"Le paludisme grave à P. falciparum se traite par :",options:["A. Chloroquine orale","B. Artéméther-luméfantrine oral","C. Artésunate IV","D. Quinine orale uniquement"],ans:2,exp:"Paludisme GRAVE : artésunate IV (1ère intention), sinon quinine IV. Paludisme non compliqué : artéméther-luméfantrine (Riamet®) ou atovaquone-proguanil (Malarone®)."},
+      {q:"La résistance aux bêtalactamines du SARM est due à :",options:["A. Production de bêtalactamase classique","B. Modification des PLP (protéines liant la pénicilline)","C. Imperméabilité membranaire","D. Pompe à efflux uniquement"],ans:1,exp:"Le SARM (S. aureus résistant à la méticilline) exprime PLP2a (codée par le gène mecA), une PLP de faible affinité pour toutes les bêtalactamines. Traitement : vancomycine ou linézolide."},
+      {q:"Quel signe clinique est évocateur d'une pneumonie franche lobaire aiguë (PFLA) ?",options:["A. Toux chronique grasse sans fièvre","B. Fièvre progressive + toux avec expectorations rouillées + syndrome de condensation","C. Dyspnée inspiratoire + stridor","D. Fièvre prolongée + splénomégalie"],ans:1,exp:"La PFLA à pneumocoque se manifeste typiquement par un début brutal : fièvre, frisson solennel, point de côté, toux avec crachat rouillé. Radio : opacité alvéolaire lobaire."},
+      {q:"Le dépistage de la tuberculose latente repose sur :",options:["A. Radio thoracique systématique","B. IGRA (Quantiféron) ou IDR à la tuberculine","C. BK crachats en série","D. PCR sanguine"],ans:1,exp:"Tuberculose latente (LTBI) = infection sans maladie active. Dépistage par IGRA (QuantiFERON-TB Gold, TSPOT) ou IDR selon le contexte. Traitement prophylactique si positif + patient à risque."},
+      {q:"La transmission du VIH ne se fait PAS par :",options:["A. Rapport sexuel non protégé","B. Partage de seringues","C. Poignée de main, éternuement, larmes","D. Allaitement maternel"],ans:2,exp:"Le VIH ne se transmet PAS par contact cutané, salive, larmes, toux, éternuement, moustiques. Transmission = voie sexuelle, sanguine (seringues, transfusion), et materno-fœtale."},
+      {q:"Le SIRS nécessite :",options:["A. 1 critère parmi les 4","B. ≥ 2 critères parmi les 4","C. Les 4 critères","D. Une infection documentée obligatoirement"],ans:1,exp:"SIRS = ≥ 2 critères parmi 4 : T° > 38 ou < 36°C, FC > 90/min, FR > 20/min ou PaCO2 < 32, GB > 12000 ou < 4000 ou > 10% de formes immatures. Le SIRS peut être non infectieux."},
+    ]
+  }
+};
+
+// Default data for other chapters
+function getDefaultData(chNum) {
+  const ch = CHAPTERS[chNum - 1];
+  return {
+    flashcards: [
+      {q:`Quelles sont les bases du chapitre ${ch.name} ?`, a:`Ce chapitre couvre les notions fondamentales de ${ch.name}. Contenu en cours d'ajout par Mikaël Guedj.`},
+      {q:`Quelle est la définition principale en ${ch.name} ?`, a:`Les définitions clés de ${ch.name} seront ajoutées prochainement dans la prochaine mise à jour du MIKBOOK.`},
+      {q:`Quels sont les signes cliniques typiques en ${ch.name} ?`, a:`Les signes cliniques caractéristiques seront détaillés dans la version complète. Consulte le MIKBOOK 3ᵉ édition.`},
+    ],
+    qcm: [
+      {q:`Question de démonstration — ${ch.name} (contenu à venir)`,options:["A. Réponse A","B. Réponse B","C. Réponse C","D. Réponse D"],ans:0,exp:`Le contenu complet du chapitre ${ch.name} sera ajouté prochainement.`},
+      {q:`Quelle notion est fondamentale en ${ch.name} ?`,options:["A. Notion fondamentale A","B. Notion fondamentale B","C. Notion fondamentale C","D. Notion fondamentale D"],ans:1,exp:`Contenu en cours de rédaction pour le chapitre ${ch.name}.`},
+      {q:`Traitement de référence en ${ch.name} ?`,options:["A. Traitement A","B. Traitement B","C. Traitement C","D. Traitement D"],ans:2,exp:`Les traitements de référence seront détaillés dans la version complète du MIKBOOK.`},
+    ]
+  };
+}
+
+// ═══════════════════════════════════
+// STATE
+// ═══════════════════════════════════
+let currentChapter = null;
+let currentFlashcards = [];
+let fcIndex = 0;
+let fcKnown = 0;
+let currentQCM = [];
+let qcmIndex = 0;
+let qcmScore = 0;
+let qcmDone = false;
+let qcmAnswered = false;
+let popupShown = false;
+
+// ═══════════════════════════════════
+// TICKER
+// ═══════════════════════════════════
+function buildTicker() {
+  const t = document.getElementById('ticker');
+  const txt = 'MIKBOOK · MÉDECINE · NEUROLOGIE · CARDIOLOGIE · INFECTIEUX · QCM · FLASHCARDS · RÉVISER · RÉUSSIR · MIKAEL GUEDJ · ';
+  let html = '';
+  for(let i=0;i<4;i++) html += `<span>${txt}</span>`;
+  t.innerHTML = html;
+}
+
+// ═══════════════════════════════════
+// CHAPTERS GRID
+// ═══════════════════════════════════
+function buildGrid() {
+  const grid = document.getElementById('chaptersGrid');
+  grid.innerHTML = CHAPTERS.map(ch => `
+    <div class="chapter-card" data-num="${ch.num}" onclick="openChapter(${ch.num})">
+      <div class="ch-num">CHAPITRE ${String(ch.num).padStart(2,'0')}</div>
+      <div class="ch-name">${ch.name}</div>
+      <div class="ch-tag">${ch.tag}</div>
+      <div class="ch-deco">${ch.deco}</div>
+    </div>
+  `).join('');
+}
+
+// ═══════════════════════════════════
+// NAVIGATION
+// ═══════════════════════════════════
+function showHome() {
+  document.getElementById('page-home').style.display = 'block';
+  document.getElementById('page-chapter').style.display = 'none';
+  document.getElementById('page-game').style.display = 'none';
+  window.scrollTo(0, 0);
+  stopSnake();
+}
+
+function openChapter(num) {
+  currentChapter = num;
+  const ch = CHAPTERS[num - 1];
+  const data = QCM_DATA[num] || getDefaultData(num);
+  currentFlashcards = data.flashcards;
+  currentQCM = data.qcm;
+  
+  document.getElementById('chapterTitle').innerHTML = `<span>${String(num).padStart(2,'0')}.</span> ${ch.name}`;
+  document.getElementById('page-home').style.display = 'none';
+  document.getElementById('page-chapter').style.display = 'block';
+  document.getElementById('page-game').style.display = 'none';
+  
+  switchTab('flashcards');
+  initFlashcards();
+  initQCM();
+  resetScore();
+  popupShown = false;
+  window.scrollTo(0, 0);
+}
+
+function showGame() {
+  document.getElementById('page-home').style.display = 'none';
+  document.getElementById('page-chapter').style.display = 'none';
+  document.getElementById('page-game').style.display = 'block';
+  document.getElementById('gameOverlay').classList.add('show');
+  window.scrollTo(0, 0);
+}
+
+// ═══════════════════════════════════
+// TABS
+// ═══════════════════════════════════
+function switchTab(name) {
+  document.querySelectorAll('.tab-btn').forEach((b,i) => {
+    b.classList.toggle('active', ['flashcards','qcm','score'][i] === name);
+  });
+  document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+  document.getElementById('tab-' + name).classList.add('active');
+}
+
+// ═══════════════════════════════════
+// FLASHCARDS
+// ═══════════════════════════════════
+function initFlashcards() {
+  fcIndex = 0; fcKnown = 0;
+  document.getElementById('flashcard').classList.remove('flipped');
+  document.getElementById('fcActions').style.display = 'none';
+  renderFlashcard();
+}
+
+function renderFlashcard() {
+  const fc = currentFlashcards[fcIndex];
+  document.getElementById('fcQuestion').textContent = fc.q;
+  document.getElementById('fcAnswer').textContent = fc.a;
+  document.getElementById('fcCounter').textContent = `${fcIndex + 1} / ${currentFlashcards.length}`;
+  document.getElementById('fcKnow').textContent = `✓ ${fcKnown} sus`;
+  document.getElementById('fcBar').style.width = `${(fcIndex / currentFlashcards.length) * 100}%`;
+  document.getElementById('flashcard').classList.remove('flipped');
+  document.getElementById('fcActions').style.display = 'none';
+}
+
+function flipCard() {
+  const card = document.getElementById('flashcard');
+  card.classList.add('flipped');
+  document.getElementById('fcActions').style.display = 'flex';
+}
+
+function fcNext(knew) {
+  if(knew) fcKnown++;
+  fcIndex++;
+  if(fcIndex >= currentFlashcards.length) {
+    document.getElementById('fcQuestion').textContent = '🎉 Flashcards terminées !';
+    document.getElementById('fcAnswer').textContent = `Tu as su ${fcKnown} carte(s) sur ${currentFlashcards.length}.`;
+    document.getElementById('flashcard').classList.remove('flipped');
+    document.getElementById('fcActions').style.display = 'none';
+    document.getElementById('fcBar').style.width = '100%';
+    document.getElementById('fcCounter').textContent = `${currentFlashcards.length} / ${currentFlashcards.length}`;
+    document.getElementById('fcKnow').textContent = `✓ ${fcKnown} sus`;
+    if(!popupShown) { popupShown=true; setTimeout(()=>showPopup(), 800); }
+    return;
+  }
+  renderFlashcard();
+}
+
+// ═══════════════════════════════════
+// QCM
+// ═══════════════════════════════════
+function initQCM() {
+  qcmIndex = 0; qcmScore = 0; qcmDone = false;
+  renderQCM();
+}
+
+function renderQCM() {
+  if(qcmIndex >= currentQCM.length) { showFinalScore(); return; }
+  const q = currentQCM[qcmIndex];
+  qcmAnswered = false;
+  document.getElementById('qcmNum').textContent = `Question ${qcmIndex + 1} / ${currentQCM.length}`;
+  document.getElementById('qcmQuestion').textContent = q.q;
+  document.getElementById('qcmFeedback').className = 'qcm-feedback';
+  document.getElementById('qcmFeedback').textContent = '';
+  document.getElementById('qcmNext').classList.remove('show');
+  
+  const opts = document.getElementById('qcmOptions');
+  opts.innerHTML = q.options.map((o,i) => `
+    <div class="qcm-opt" onclick="answerQCM(${i})" id="opt${i}">
+      <span class="opt-letter">${['A','B','C','D'][i]}</span>
+      <span class="opt-text">${o}</span>
+    </div>
+  `).join('');
+}
+
+function answerQCM(idx) {
+  if(qcmAnswered) return;
+  qcmAnswered = true;
+  const q = currentQCM[qcmIndex];
+  const correct = idx === q.ans;
+  if(correct) qcmScore++;
+  
+  document.querySelectorAll('.qcm-opt').forEach((el,i) => {
+    el.classList.add('disabled');
+    if(i === q.ans) el.classList.add('correct');
+    else if(i === idx && !correct) el.classList.add('wrong');
+  });
+  
+  const fb = document.getElementById('qcmFeedback');
+  fb.textContent = q.exp;
+  fb.className = 'qcm-feedback ' + (correct ? 'good' : 'bad');
+  document.getElementById('qcmNext').classList.add('show');
+  
+  // Check game popup trigger
+  if(qcmIndex === 7 && !popupShown) { popupShown=true; setTimeout(()=>showPopup(), 1200); }
+}
+
+function qcmNextQ() {
+  qcmIndex++;
+  if(qcmIndex >= currentQCM.length) { showFinalScore(); return; }
+  renderQCM();
+}
+
+function showFinalScore() {
+  qcmDone = true;
+  const pct = Math.round((qcmScore / currentQCM.length) * 100);
+  document.getElementById('qcmNum').textContent = 'QCM terminé !';
+  document.getElementById('qcmQuestion').textContent = '';
+  document.getElementById('qcmOptions').innerHTML = '';
+  document.getElementById('qcmFeedback').className = 'qcm-feedback';
+  document.getElementById('qcmNext').classList.remove('show');
+  
+  updateScoreTab(qcmScore, currentQCM.length);
+  switchTab('score');
+  
+  if(!popupShown) { popupShown=true; setTimeout(()=>showPopup(), 1000); }
+}
+
+function updateScoreTab(score, total) {
+  const pct = Math.round((score / total) * 100);
+  document.getElementById('scoreBig').textContent = `${score}/${total}`;
+  const msgs = ['Continue les révisions, tu vas y arriver !', 'Bon début, continue !', 'Pas mal, encore un effort !', 'Bien joué, tu progresses !', 'Très bon score, bravo !', 'Excellent ! Tu maîtrises ce chapitre !'];
+  const msgIdx = Math.min(5, Math.floor(pct / 17));
+  document.getElementById('scoreMsg').textContent = msgs[msgIdx];
+  const stamp = document.getElementById('scoreStamp');
+  if(pct >= 70) stamp.innerHTML = '<div class="score-stamp stamp-good">VALIDÉ ✓</div>';
+  else stamp.innerHTML = '<div class="score-stamp stamp-bad">À RETRAVAILLER</div>';
+}
+
+function resetScore() {
+  document.getElementById('scoreBig').textContent = '—';
+  document.getElementById('scoreMsg').textContent = 'Complète le QCM pour voir ton score.';
+  document.getElementById('scoreStamp').innerHTML = '';
+}
+
+// ═══════════════════════════════════
+// GAME POPUP
+// ═══════════════════════════════════
+function showPopup() {
+  document.getElementById('gamePopup').classList.add('show');
+}
+function closePopup() {
+  document.getElementById('gamePopup').classList.remove('show');
+}
+function closePopupAndPlay() {
+  document.getElementById('gamePopup').classList.remove('show');
+  showGame();
+}
+
+// ═══════════════════════════════════
+// SNAKE GAME
+// ═══════════════════════════════════
+const CELL = 20;
+const COLS = 24;
+const ROWS = 24;
+
+let snake, dir, nextDir, food, snakeScore2, bestScore, gameLoop, gameRunning, gamePaused;
+
+function initSnakeState() {
+  snake = [{x:12,y:12},{x:11,y:12},{x:10,y:12}];
+  dir = {x:1,y:0}; nextDir = {x:1,y:0};
+  snakeScore2 = 0;
+  gameRunning = false; gamePaused = false;
+  bestScore = parseInt(localStorage.getItem('mikbook_snake_best') || '0');
+  placeFood();
+  updateSnakeUI();
+  drawSnake();
+}
+
+function placeFood() {
+  let pos;
+  do { pos = {x:Math.floor(Math.random()*COLS), y:Math.floor(Math.random()*ROWS)}; }
+  while(snake.some(s=>s.x===pos.x && s.y===pos.y));
+  food = pos;
+}
+
+function startSnake() {
+  clearInterval(gameLoop);
+  initSnakeState();
+  gameRunning = true;
+  document.getElementById('gameOverlay').classList.remove('show');
+  gameLoop = setInterval(tickSnake, 120);
+}
+
+function stopSnake() { clearInterval(gameLoop); gameRunning = false; }
+
+function tickSnake() {
+  if(!gameRunning || gamePaused) return;
+  dir = {...nextDir};
+  const head = {x:snake[0].x+dir.x, y:snake[0].y+dir.y};
+  
+  if(head.x<0||head.x>=COLS||head.y<0||head.y>=ROWS||snake.some(s=>s.x===head.x&&s.y===head.y)) {
+    gameOver(); return;
+  }
+  
+  snake.unshift(head);
+  if(head.x===food.x && head.y===food.y) {
+    snakeScore2 += 10;
+    if(snakeScore2 > bestScore) { bestScore = snakeScore2; localStorage.setItem('mikbook_snake_best', bestScore); }
+    placeFood();
+  } else { snake.pop(); }
+  
+  updateSnakeUI();
+  drawSnake();
+}
+
+function gameOver() {
+  clearInterval(gameLoop); gameRunning = false;
+  const overlay = document.getElementById('gameOverlay');
+  document.getElementById('overlayTitle').textContent = 'GAME OVER';
+  document.getElementById('overlaySub').textContent = `Score : ${snakeScore2} — Meilleur : ${bestScore}`;
+  overlay.classList.add('show');
+}
+
+function updateSnakeUI() {
+  document.getElementById('snakeScore').textContent = `Score: ${snakeScore2}`;
+  document.getElementById('snakeBest').textContent = `Meilleur: ${bestScore}`;
+}
+
+function drawSnake() {
+  const canvas = document.getElementById('snakeCanvas');
+  if(!canvas) return;
+  const ctx = canvas.getContext('2d');
+  ctx.fillStyle = '#000';
+  ctx.fillRect(0,0,canvas.width,canvas.height);
+  
+  // Grid
+  ctx.strokeStyle = '#0a1a0a';
+  ctx.lineWidth = 0.5;
+  for(let i=0;i<COLS;i++) { ctx.beginPath(); ctx.moveTo(i*CELL,0); ctx.lineTo(i*CELL,canvas.height); ctx.stroke(); }
+  for(let i=0;i<ROWS;i++) { ctx.beginPath(); ctx.moveTo(0,i*CELL); ctx.lineTo(canvas.width,i*CELL); ctx.stroke(); }
+  
+  // Food (pill)
+  ctx.fillStyle = '#C8001A';
+  ctx.beginPath();
+  ctx.ellipse(food.x*CELL+CELL/2, food.y*CELL+CELL/2, CELL/2-2, CELL/3-2, 0, 0, Math.PI*2);
+  ctx.fill();
+  ctx.fillStyle = '#ff6666';
+  ctx.fillRect(food.x*CELL+CELL/2-3, food.y*CELL+CELL/2-1, 6, 2);
+  
+  // Snake
+  snake.forEach((seg, i) => {
+    const isHead = i === 0;
+    if(isHead) {
+      ctx.fillStyle = '#2a8a2a';
+    } else {
+      const t = i / snake.length;
+      ctx.fillStyle = `hsl(${120 - t*20}, ${70-t*30}%, ${35-t*10}%)`;
+    }
+    ctx.fillRect(seg.x*CELL+1, seg.y*CELL+1, CELL-2, CELL-2);
+    
+    if(isHead) {
+      // Eyes
+      ctx.fillStyle = '#fff';
+      const eyeX1 = seg.x*CELL + CELL/2 + dir.x*3 + dir.y*3;
+      const eyeY1 = seg.y*CELL + CELL/2 + dir.y*3 - dir.x*3;
+      const eyeX2 = seg.x*CELL + CELL/2 + dir.x*3 - dir.y*3;
+      const eyeY2 = seg.y*CELL + CELL/2 + dir.y*3 + dir.x*3;
+      ctx.beginPath(); ctx.arc(eyeX1, eyeY1, 2, 0, Math.PI*2); ctx.fill();
+      ctx.beginPath(); ctx.arc(eyeX2, eyeY2, 2, 0, Math.PI*2); ctx.fill();
+      // Cross medic on head
+      ctx.fillStyle = '#fff';
+      ctx.fillRect(seg.x*CELL+CELL/2-1, seg.y*CELL+2, 2, CELL/2);
+    }
+  });
+}
+
+// Controls
+document.addEventListener('keydown', e => {
+  if(['ArrowUp','ArrowDown','ArrowLeft','ArrowRight','z','q','s','d','Z','Q','S','D',' '].includes(e.key)) e.preventDefault();
+  if(e.key === ' ') { gamePaused = !gamePaused; return; }
+  const map = {
+    'ArrowUp':{x:0,y:-1},'z':{x:0,y:-1},'Z':{x:0,y:-1},
+    'ArrowDown':{x:0,y:1},'s':{x:0,y:1},'S':{x:0,y:1},
+    'ArrowLeft':{x:-1,y:0},'q':{x:-1,y:0},'Q':{x:-1,y:0},
+    'ArrowRight':{x:1,y:0},'d':{x:1,y:0},'D':{x:1,y:0},
+  };
+  if(map[e.key]) {
+    const nd = map[e.key];
+    if(nd.x !== -dir.x || nd.y !== -dir.y) nextDir = nd;
+  }
+});
+
+// ═══════════════════════════════════
+// INIT
+// ═══════════════════════════════════
+buildTicker();
+buildGrid();
+initSnakeState();
+</script>
+</body>
+</html>
